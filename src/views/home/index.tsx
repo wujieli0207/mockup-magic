@@ -1,9 +1,13 @@
-import { Input } from '@geist-ui/core'
+import LeftPanel from '@/views/left-panel'
+import RightPabel from '@/views/right-panel'
+import PaintingView from '@/views/painting-view'
 
 const Home = () => {
   return (
-    <div className="flex items-center justify-center w-screen h-screen">
-      <Input placeholder="第一步" />
+    <div className="flex justify-between">
+      <LeftPanel />
+      <PaintingView />
+      <RightPabel />
     </div>
   )
 }
