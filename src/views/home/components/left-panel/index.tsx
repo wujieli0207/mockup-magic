@@ -7,16 +7,14 @@ import { IMockupComponent } from 'types/mockup'
 const LeftPanel = () => {
   const mockupGroup = mockupList.reduce(
     (result: CollapseProps['items'], item: IMockupComponent, index: number) => {
-      if (!result) return
-
       const { label, type } = item
 
-      const existItem = result.find((item) => item.label === type)
+      const existItem = result!.find((item) => item.label === type)
 
       if (existItem && isArray(existItem.children)) {
         existItem.children.push(<p key={label}>{label}</p>)
       } else {
-        result.push({
+        result!.push({
           key: `${index + 1}`,
           label: type,
           children: [<p key={label}>{label}</p>],

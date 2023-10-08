@@ -1,6 +1,6 @@
-import LeftPanel from '@/views/left-panel'
-import RightPabel from '@/views/right-panel'
-import PaintingView from '@/views/painting-view'
+import LeftPanel from './components/left-panel'
+import RightPabel from './components/right-panel'
+import PaintingView from './components/painting-view'
 
 const Home = () => {
   return (
