@@ -1,4 +1,4 @@
-import { IMockupComponent } from 'types/mockup'
+import { IMockupComponent } from '#/mockup'
 
 const modules = import.meta.glob('./**/*.(tsx|vue)', { eager: true })
 const mockupList: IMockupComponent[] = []

@@ -1,5 +1,5 @@
 import { MOCUKUP_TYPE_KV } from '@/constants/mockup-contant'
-import { IMockupComponent } from 'types/mockup'
+import { IMockupComponent } from '#/mockup'
 
 const mockup: IMockupComponent = {
   label: 'Iphone模型1',
