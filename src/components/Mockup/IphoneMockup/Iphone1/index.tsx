@@ -1,12 +1,20 @@
-import { MOCUKUP_TYPE_KV } from '@/constants/mockup-contant'
+import { MOCUKUP_TYPE_KV } from '@/constants/mockup-constant'
 import { IMockupComponent } from '#/mockup'
+import { MockupPreview } from '@/components/Preview'
 
 const mockup: IMockupComponent = {
+  key: 'iphone1',
   label: 'Iphone模型1',
   type: MOCUKUP_TYPE_KV.IPHONE,
-
+  preview: ({ handleBtn }) => {
+    return (
+      <>
+        <MockupPreview src="error" handleBtn={handleBtn} />
+      </>
+    )
+  },
   render: () => {
-    return <div>IPhone模型1</div>
+    return <div>Iphone模型1</div>
   },
 }
 
