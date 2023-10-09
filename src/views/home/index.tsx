@@ -4,7 +4,7 @@ import PaintingView from './components/painting-view'
 
 const Home = () => {
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between bg-zinc-200">
       <LeftPanel />
       <PaintingView />
       <RightPabel />

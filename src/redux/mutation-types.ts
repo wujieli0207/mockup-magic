@@ -1,0 +1,2 @@
+// 设置画布实例
+export const SET_PAINTING_INSTANCE = 'SET_PAINTING_INSTANCE'

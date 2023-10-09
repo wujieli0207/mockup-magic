@@ -1,9 +1,9 @@
-import { Tabs } from 'antd'
+import { Card, Tabs } from 'antd'
 import pluginList from './plugins'
+import Header from '../header'
+import './index.less'
 
 const LeftPanel = () => {
-  console.log('pluginList: ', pluginList)
-
   const pluginItems = pluginList
     .sort((a, b) => a.order - b.order)
     .map((item) => {
@@ -16,12 +16,12 @@ const LeftPanel = () => {
     })
 
   return (
-    <div className="w-48 h-screen shadow">
-      <div className="flex items-center justify-center text-xl">
-        Mockup Magic
-      </div>
+    <div className="h-screen w-60">
+      <Header />
 
-      <Tabs items={pluginItems} tabPosition="left" size="small" />
+      <Card className="mt-2 ml-2 left-panel__container">
+        <Tabs items={pluginItems} size="small" />
+      </Card>
     </div>
   )
 }
