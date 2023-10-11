@@ -6,10 +6,10 @@ const mockup: IMockupComponent = {
   key: 'macbook1',
   label: 'Macbook模型1',
   type: MOCUKUP_TYPE_KV.MAC_BOOk,
-  preview: ({ handleBtn }) => {
+  preview: () => {
     return (
       <>
-        <MockupPreview src="error" handleBtn={handleBtn} />
+        <MockupPreview src="error" />
       </>
     )
   },

@@ -1,20 +1,27 @@
-import mockupList from '@/components/Mockup'
+import { nanoid } from 'nanoid'
 import { store } from '@/redux'
 import { setPaintingInstance } from '@/redux/modules/painting/action'
 import type { IMockupComponent } from '#/mockup'
 
+interface IGeneratePaintingInstanceParams {
+  key: IMockupComponent['key']
+  props: IMockupComponent['props']
+}
+
 /**
  * @description 点击使用按钮，使用当前模型
  */
-export function handleClickUseBtn(key: IMockupComponent['key']) {
-  const selectMockup = mockupList.find((item) => item.key === key)
+export function handleGeneratePaintingInstance(
+  params: IGeneratePaintingInstanceParams
+) {
+  const { key, props } = params
 
   store.dispatch(
     setPaintingInstance({
-      _vid: '1',
-      mockup: '2',
+      _vid: nanoid(),
+      mockupKey: key,
       imageUrl: [''],
+      props,
     })
   )
-  console.log('selectMockup: ', selectMockup)
 }

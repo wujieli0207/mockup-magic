@@ -6,15 +6,15 @@ const mockup: IMockupComponent = {
   key: 'ipad1',
   label: 'Ipad模型1',
   type: MOCUKUP_TYPE_KV.IPAD,
-  preview: ({ handleBtn }) => {
+  preview: () => {
     return (
       <>
-        <MockupPreview src="error" handleBtn={handleBtn} />
+        <MockupPreview src="error" />
       </>
     )
   },
   render: () => {
-    return <div>Ipad模型1</div>
+    return <div>Iphone模型1</div>
   },
 }
 
