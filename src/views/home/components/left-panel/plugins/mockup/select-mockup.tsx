@@ -1,54 +1,22 @@
 import { Card, Modal, Tabs } from 'antd'
 import { UpOutlined, DownOutlined } from '@ant-design/icons'
 import { useState } from 'react'
-import { isArray } from 'lodash-es'
+import { useSelector } from 'react-redux'
 import mockupList from '@/components/Mockup'
-import { IMockupComponent } from '#/mockup'
-import { handleGeneratePaintingInstance } from './utils'
+import { getGroupMockup } from './utils'
+import { IReduxState } from '@/redux'
 
-interface IMockupTabItem {
-  key: string
-  label: IMockupComponent['type']
-  children: Array<JSX.Element>
-}
+export default function SelectMockup() {
+  const painting = useSelector((state: IReduxState) => state.painting)
+  const { paintingInstance } = painting
 
-const SelectMockup = () => {
   const [isOpenSelect, setIsOpenSelect] = useState(false)
 
-  const mockupGroup = mockupList.reduce(
-    (result: IMockupTabItem[], item: IMockupComponent, index: number) => {
-      const { key, label, type, preview, props } = item
-
-      const child = () => {
-        return (
-          <span
-            key={label}
-            className="mr-2"
-            onClick={() => {
-              handleGeneratePaintingInstance({ key, props })
-              handleClickMockup()
-            }}
-          >
-            {preview()}
-          </span>
-        )
-      }
-
-      const existItem = result!.find((item) => item.label === type)
-      if (existItem && isArray(existItem.children)) {
-        existItem.children.push(child())
-      } else {
-        result!.push({
-          key: `${index + 1}`,
-          label: type,
-          children: [child()],
-        })
-      }
-
-      return result
-    },
-    []
-  )
+  const mockupGroup = getGroupMockup({
+    mockupList,
+    clickMockupFn: handleClickMockup,
+    paintingInstance,
+  })
 
   function handleClickMockup() {
     setIsOpenSelect(!isOpenSelect)
@@ -58,14 +26,16 @@ const SelectMockup = () => {
     <>
       <Card hoverable={true} onClick={handleClickMockup} className="shadow">
         <div className="flex items-center justify-between cursor-pointer">
-          <img
-            src="https://shots.so/mockups/iPhone%2015/thumbs/1.png"
-            className="h-8 aspect-[4/3]"
-          />
+          <div className="flex items-center">
+            <img
+              src={paintingInstance.props?.layouts[0].imgUrl}
+              className="h-8 aspect-[4/3]"
+            />
 
-          <div className="-ml-10">
-            <div className="text-base">iPhone 15</div>
-            <div className="text-xs">1170 * 2532</div>
+            <div className="ml-2">
+              <div className="text-base">{paintingInstance.label}</div>
+              <div className="text-xs">1170 * 2532</div>
+            </div>
           </div>
 
           <div className="text-gray-400">
@@ -79,6 +49,7 @@ const SelectMockup = () => {
         open={isOpenSelect}
         centered={true}
         footer={null}
+        width={680}
         onCancel={handleClickMockup}
       >
         <Tabs items={mockupGroup} size="small" />
@@ -86,5 +57,3 @@ const SelectMockup = () => {
     </>
   )
 }
-
-export default SelectMockup

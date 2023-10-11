@@ -16,7 +16,7 @@ const LeftPanel = () => {
     })
 
   return (
-    <div className="h-screen w-60">
+    <div className="w-64 h-screen">
       <Header />
 
       <Card className="mt-2 ml-2 left-panel__container">

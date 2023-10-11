@@ -10,6 +10,11 @@ import reduxThunk from 'redux-thunk'
 import reduxPromise from 'redux-promise'
 import storage from 'redux-persist/lib/storage'
 import painting from './modules/painting/reducer'
+import { IPaintingState } from './interface'
+
+export interface IReduxState {
+  painting: IPaintingState
+}
 
 // 创建reducer(拆分reducer)
 const reducer = combineReducers({

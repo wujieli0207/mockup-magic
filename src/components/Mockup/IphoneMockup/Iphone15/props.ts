@@ -4,24 +4,24 @@ const createProps = (): IMockupProps => {
   return {
     styles: [
       {
-        label: 'Dark Blue',
-        imgUrl:
-          'https://shots.so/mockups/iPhone%2015%20Pro/style/dark-blue.png',
+        label: 'Black',
+        imgUrl: 'https://shots.so/mockups/iPhone%2015/style/black.png',
       },
       {
-        label: 'Black Titanium',
-        imgUrl:
-          'https://shots.so/mockups/iPhone%2015%20Pro/style/black-titanium.png',
+        label: 'Blue',
+        imgUrl: 'https://shots.so/mockups/iPhone%2015/style/blue.png',
       },
       {
-        label: 'Natural Titanium',
-        imgUrl:
-          '	https://shots.so/mockups/iPhone%2015%20Pro/style/natural-titanium.png',
+        label: 'Green',
+        imgUrl: 'https://shots.so/mockups/iPhone%2015/style/green.png',
       },
       {
-        label: 'White Titanium',
-        imgUrl:
-          'https://shots.so/mockups/iPhone%2015%20Pro/style/white-titanium.png',
+        label: 'Pink',
+        imgUrl: 'https://shots.so/mockups/iPhone%2015/style/pink.png',
+      },
+      {
+        label: 'Yellow',
+        imgUrl: 'https://shots.so/mockups/iPhone%2015/style/yellow.png',
       },
     ],
     layouts: [

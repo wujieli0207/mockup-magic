@@ -4,10 +4,10 @@ import { MockupPreview } from '@/components/Preview'
 import createProps from './props'
 
 const mockup: IMockupComponent = {
-  key: 'iPhone 15',
-  label: 'iPhone 15',
-  type: MOCUKUP_TYPE_KV.IPHONE,
-  isNew: true,
+  key: 'IpadPro11',
+  label: 'Ipad Pro 11',
+  type: MOCUKUP_TYPE_KV.IPAD,
+  isNew: false,
   preview: ({ isFocus }) => {
     const currentProps = mockup.props
     return (
@@ -23,7 +23,7 @@ const mockup: IMockupComponent = {
     )
   },
   render: () => {
-    return <div>Ipad模型1</div>
+    return <div>Ipad Pro 11</div>
   },
   props: createProps(),
 }

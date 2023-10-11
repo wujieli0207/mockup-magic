@@ -7,7 +7,7 @@ export interface IMockupComponent {
   type: ValueOf<typeof MOCUKUP_TYPE_KV>
   details?: IMockupDetails
   render: () => JSX.Element
-  preview: () => JSX.Element
+  preview: (params: IMockupPreviewParams) => JSX.Element
   props: IMockupProps
   isNew: boolean // 是否是上新模型， 默认为 false
 }
@@ -16,6 +16,10 @@ export interface IMockupDetails {
   device?: string // 机型
   screenPixels: string // 分辨率
   releaseYear: number // 发布时间
+}
+
+export interface IMockupPreviewParams {
+  isFocus?: boolean // 是否被选中
 }
 
 // 模型可以调整的属性

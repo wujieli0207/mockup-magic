@@ -9,14 +9,27 @@ interface IProps {
   src: string
   layouts: IMockupProps['layouts']
   fallback?: string
+  isFocus?: boolean
 }
 
 const MockupPreview = (props: IProps) => {
-  const { label, isNew, src, layouts, fallback = IMAGE_FALLBACK } = props
+  const {
+    label,
+    isNew,
+    src,
+    layouts,
+    fallback = IMAGE_FALLBACK,
+    isFocus = false,
+  } = props
 
   return (
     //
-    <Card hoverable={true} className="w-48 rounded-lg shadow cursor-pointer ">
+    <Card
+      hoverable={true}
+      className={`w-48 rounded-lg shadow cursor-pointer ${
+        isFocus ? 'border border-black border-solid' : ''
+      }`}
+    >
       {/* 标题 */}
       <div className="flex items-center justify-between">
         <div className="text-lg">{label}</div>
@@ -32,9 +45,9 @@ const MockupPreview = (props: IProps) => {
       {/* 可选布局展示, 前三张图片展示，后展示总个数 */}
       <div className="flex">
         {isArray(layouts) &&
-          layouts.slice(0, 3).map((item) => {
+          layouts.slice(0, 3).map((item, index) => {
             return (
-              <div className="mr-2 rounded bg-zinc-100">
+              <div key={index} className="mr-2 rounded bg-zinc-100">
                 <img src={item.imgUrl} className="h-8 aspect-[4/3]" />
               </div>
             )
