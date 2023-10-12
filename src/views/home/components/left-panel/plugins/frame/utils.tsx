@@ -1,53 +1,52 @@
 import { nanoid } from 'nanoid'
 import { store } from '@/redux'
-import { setMockupInstance } from '@/redux/modules/painting/action'
-import type { IMockupComponent } from '#/mockup'
+import { setFrameInstance } from '@/redux/modules/painting/action'
 import { isArray } from 'lodash-es'
 import { IPaintingState } from '@/redux/interface'
+import { IFrameComponent } from '#/frame'
+import { FRAME_TYPE_VL } from '@/constants/frame-constant'
 
 /**
  * @description 点击使用按钮，使用当前模型
  */
-export function handleGenerateMockupInstance(mockup: IMockupComponent) {
+export function handleGenerateFrameInstance(frame: IFrameComponent) {
   store.dispatch(
-    setMockupInstance({
+    setFrameInstance({
       _vid: nanoid(),
-      imageUrl: [''],
-      ...mockup,
+      ...frame,
     })
   )
 }
 
 interface IGetGroupMockup {
-  mockupList: IMockupComponent[]
+  frameList: IFrameComponent[]
   clickMockupFn: () => void
-  mockupInstance: IPaintingState['mockupInstance']
+  frameInstance: IPaintingState['frameInstance']
 }
 
-interface IGetGroupMockupCommon {
+interface IGetGroupFrameCommon {
   key: string
-  label: IMockupComponent['type']
+  type: IFrameComponent['type']
+  label: string
 }
 
-interface IGetGroupMockupData extends IGetGroupMockupCommon {
+interface IGetGroupFrameData extends IGetGroupFrameCommon {
   children: Array<() => JSX.Element>
 }
 
-interface IGetGroupMockupResult extends IGetGroupMockupCommon {
+interface IGetGroupFrameResult extends IGetGroupFrameCommon {
   children: JSX.Element
 }
 
 /**
  * @description 生成模型分组数据
  */
-export function getGroupMockup(
-  params: IGetGroupMockup
-): IGetGroupMockupResult[] {
-  const { mockupList, clickMockupFn, mockupInstance } = params
+export function getGroupFrame(params: IGetGroupMockup): IGetGroupFrameResult[] {
+  const { frameList, clickMockupFn, frameInstance } = params
 
   // 生成分组数据
-  const mockupGroupData = mockupList.reduce(
-    (result: IGetGroupMockupData[], item: IMockupComponent, index: number) => {
+  const frameGroupData = frameList.reduce(
+    (result: IGetGroupFrameData[], item: IFrameComponent, index: number) => {
       const { key, label, type, preview } = item
 
       const child = () => {
@@ -56,22 +55,23 @@ export function getGroupMockup(
             key={label}
             className="mb-4 mr-4"
             onClick={() => {
-              handleGenerateMockupInstance(item)
+              handleGenerateFrameInstance(item)
               clickMockupFn()
             }}
           >
-            {preview({ isFocus: key === mockupInstance?.key })}
+            {preview({ isFocus: key === frameInstance?.key })}
           </span>
         )
       }
 
-      const existItem = result!.find((item) => item.label === type)
+      const existItem = result!.find((item) => item.type === type)
       if (existItem && isArray(existItem.children)) {
         existItem.children.push(() => child())
       } else {
         result!.push({
           key: `${index + 1}`,
-          label: type,
+          type,
+          label: FRAME_TYPE_VL[type],
           children: [() => child()],
         })
       }
@@ -82,16 +82,16 @@ export function getGroupMockup(
   )
 
   // 生成分组结果，主要是保证 child 属性横向排列
-  const mockupGroup = mockupGroupData.map((item) => {
+  const frameGroup = frameGroupData.map((item) => {
     return {
       ...item,
       children: (
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap items-end">
           {item.children.map((child) => child())}
         </div>
       ),
     }
   })
 
-  return mockupGroup
+  return frameGroup
 }

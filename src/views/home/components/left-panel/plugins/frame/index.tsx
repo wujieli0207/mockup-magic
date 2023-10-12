@@ -1,7 +1,12 @@
 import { IPluginComponent } from '#/plugin'
+import SelectFrame from './select-frame'
 
 const plugin = () => {
-  return <>frame</>
+  return (
+    <>
+      <SelectFrame />
+    </>
+  )
 }
 
 const frame: IPluginComponent = {
