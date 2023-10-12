@@ -18,6 +18,10 @@ export default function SelectMockup() {
     mockupInstance,
   })
 
+  const activeTabKey = mockupGroup.find(
+    (item) => item.key === mockupInstance.type
+  )?.key
+
   function handleClickMockup() {
     setIsOpenSelect(!isOpenSelect)
   }
@@ -56,7 +60,7 @@ export default function SelectMockup() {
         width={680}
         onCancel={handleClickMockup}
       >
-        <Tabs items={mockupGroup} size="small" />
+        <Tabs items={mockupGroup} activeKey={activeTabKey} size="small" />
       </Modal>
     </>
   )

@@ -5,10 +5,10 @@ import { defineConstants } from '@/utils/defineConstants'
  */
 export const { MOCUKUP_TYPE_KV, MOCUKUP_TYPE_VL } = defineConstants(
   [
-    { key: 'MAC_BOOK', value: 'macBook', label: 'macbook 模型' },
-    { key: 'IPAD', value: 'ipad', label: 'ipad 模型' },
-    { key: 'IPHONE', value: 'iphone', label: 'iphone 模型' },
-    { key: 'IMAC', value: 'imac', label: 'imac 模型' },
+    { key: 'MAC_BOOK', value: 'macBook', label: 'Macbook' },
+    { key: 'IPAD', value: 'ipad', label: 'iPad' },
+    { key: 'IPHONE', value: 'iphone', label: 'iPhone' },
+    { key: 'IMAC', value: 'imac', label: 'iMac' },
     { key: 'MORE', value: 'more', label: '多设备模型' },
   ] as const,
   'MOCUKUP_TYPE'

@@ -4,6 +4,7 @@ import { setMockupInstance } from '@/redux/modules/painting/action'
 import type { IMockupComponent } from '#/mockup'
 import { isArray } from 'lodash-es'
 import { IPaintingState } from '@/redux/interface'
+import { MOCUKUP_TYPE_VL } from '@/constants/mockup-constant'
 
 /**
  * @description 点击使用按钮，使用当前模型
@@ -25,8 +26,8 @@ interface IGetGroupMockup {
 }
 
 interface IGetGroupMockupCommon {
-  key: string
-  label: IMockupComponent['type']
+  key: IMockupComponent['type']
+  label: string
 }
 
 interface IGetGroupMockupData extends IGetGroupMockupCommon {
@@ -47,7 +48,7 @@ export function getGroupMockup(
 
   // 生成分组数据
   const mockupGroupData = mockupList.reduce(
-    (result: IGetGroupMockupData[], item: IMockupComponent, index: number) => {
+    (result: IGetGroupMockupData[], item: IMockupComponent) => {
       const { key, label, type, preview } = item
 
       const child = () => {
@@ -65,13 +66,13 @@ export function getGroupMockup(
         )
       }
 
-      const existItem = result!.find((item) => item.label === type)
+      const existItem = result!.find((item) => item.key === type)
       if (existItem && isArray(existItem.children)) {
         existItem.children.push(() => child())
       } else {
         result!.push({
-          key: `${index + 1}`,
-          label: type,
+          key: type,
+          label: MOCUKUP_TYPE_VL[type],
           children: [() => child()],
         })
       }
