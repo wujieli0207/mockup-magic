@@ -8,6 +8,11 @@ const mockup: IMockupComponent = {
   label: 'Macbook Air M2',
   type: MOCUKUP_TYPE_KV.MAC_BOOK,
   isNew: false,
+  details: {
+    device: 'Apple Macbook Air M2',
+    screenPixels: '2560 x 1664',
+    releaseYear: 2019,
+  },
   preview: ({ isFocus }) => {
     const currentProps = mockup.props
     return (

@@ -8,6 +8,11 @@ const mockup: IMockupComponent = {
   label: 'iPhone 15',
   type: MOCUKUP_TYPE_KV.IPHONE,
   isNew: true,
+  details: {
+    device: 'Apple iPhone 15',
+    screenPixels: '1170 x 2532',
+    releaseYear: 2023,
+  },
   preview: ({ isFocus }) => {
     const currentProps = mockup.props
     return (

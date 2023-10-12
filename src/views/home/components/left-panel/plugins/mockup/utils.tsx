@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid'
 import { store } from '@/redux'
-import { setPaintingInstance } from '@/redux/modules/painting/action'
+import { setMockupInstance } from '@/redux/modules/painting/action'
 import type { IMockupComponent } from '#/mockup'
 import { isArray } from 'lodash-es'
 import { IPaintingState } from '@/redux/interface'
@@ -8,9 +8,9 @@ import { IPaintingState } from '@/redux/interface'
 /**
  * @description 点击使用按钮，使用当前模型
  */
-export function handleGeneratePaintingInstance(mockup: IMockupComponent) {
+export function handleGenerateMockupInstance(mockup: IMockupComponent) {
   store.dispatch(
-    setPaintingInstance({
+    setMockupInstance({
       _vid: nanoid(),
       imageUrl: [''],
       ...mockup,
@@ -21,7 +21,7 @@ export function handleGeneratePaintingInstance(mockup: IMockupComponent) {
 interface IGetGroupMockup {
   mockupList: IMockupComponent[]
   clickMockupFn: () => void
-  paintingInstance: IPaintingState['paintingInstance']
+  mockupInstance: IPaintingState['mockupInstance']
 }
 
 interface IGetGroupMockupCommon {
@@ -43,7 +43,7 @@ interface IGetGroupMockupResult extends IGetGroupMockupCommon {
 export function getGroupMockup(
   params: IGetGroupMockup
 ): IGetGroupMockupResult[] {
-  const { mockupList, clickMockupFn, paintingInstance } = params
+  const { mockupList, clickMockupFn, mockupInstance } = params
 
   // 生成分组数据
   const mockupGroupData = mockupList.reduce(
@@ -56,11 +56,11 @@ export function getGroupMockup(
             key={label}
             className="mb-4 mr-4"
             onClick={() => {
-              handleGeneratePaintingInstance(item)
+              handleGenerateMockupInstance(item)
               clickMockupFn()
             }}
           >
-            {preview({ isFocus: key === paintingInstance.key })}
+            {preview({ isFocus: key === mockupInstance.key })}
           </span>
         )
       }

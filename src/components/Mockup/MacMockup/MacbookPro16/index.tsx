@@ -8,6 +8,11 @@ const mockup: IMockupComponent = {
   label: 'Macbook Pro 16',
   type: MOCUKUP_TYPE_KV.MAC_BOOK,
   isNew: false,
+  details: {
+    device: 'Apple Macbook Pro 16',
+    screenPixels: '3456 x 2234',
+    releaseYear: 2022,
+  },
   preview: ({ isFocus }) => {
     const currentProps = mockup.props
     return (

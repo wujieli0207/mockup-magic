@@ -8,6 +8,11 @@ const mockup: IMockupComponent = {
   label: 'Ipad Pro 11',
   type: MOCUKUP_TYPE_KV.IPAD,
   isNew: false,
+  details: {
+    device: 'Apple iPad Pro 11"',
+    screenPixels: '1668 x 2388',
+    releaseYear: 2021,
+  },
   preview: ({ isFocus }) => {
     const currentProps = mockup.props
     return (

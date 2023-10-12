@@ -1,9 +1,9 @@
-import { IPaintingInstance } from '#/painting'
-import { SET_PAINTING_INSTANCE } from '@/redux/mutation-types'
+import { IMockupInstance } from '#/painting'
+import { SET_MOCKUP_INSTANCE } from '@/redux/mutation-types'
 
-export const setPaintingInstance = (paintingInstance: IPaintingInstance) => {
+export const setMockupInstance = (mockupInstance: IMockupInstance) => {
   return {
-    type: SET_PAINTING_INSTANCE,
-    paintingInstance,
+    type: SET_MOCKUP_INSTANCE,
+    mockupInstance,
   }
 }

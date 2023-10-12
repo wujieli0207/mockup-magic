@@ -5,7 +5,7 @@ export interface IMockupComponent {
   key: string // 组件唯一 key
   label: string // 组件标题
   type: ValueOf<typeof MOCUKUP_TYPE_KV>
-  details?: IMockupDetails
+  details: IMockupDetails
   render: () => JSX.Element
   preview: (params: IMockupPreviewParams) => JSX.Element
   props: IMockupProps
@@ -13,7 +13,7 @@ export interface IMockupComponent {
 }
 
 export interface IMockupDetails {
-  device?: string // 机型
+  device: string // 机型
   screenPixels: string // 分辨率
   releaseYear: number // 发布时间
 }

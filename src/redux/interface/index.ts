@@ -1,5 +1,5 @@
-import { IPaintingInstance } from '#/painting'
+import { IMockupInstance } from '#/painting'
 
 export interface IPaintingState {
-  paintingInstance: Partial<IPaintingInstance>
+  mockupInstance: Partial<IMockupInstance>
 }

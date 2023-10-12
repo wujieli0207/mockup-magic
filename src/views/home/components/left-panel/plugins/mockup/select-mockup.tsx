@@ -8,14 +8,14 @@ import { IReduxState } from '@/redux'
 
 export default function SelectMockup() {
   const painting = useSelector((state: IReduxState) => state.painting)
-  const { paintingInstance } = painting
+  const { mockupInstance } = painting
 
   const [isOpenSelect, setIsOpenSelect] = useState(false)
 
   const mockupGroup = getGroupMockup({
     mockupList,
     clickMockupFn: handleClickMockup,
-    paintingInstance,
+    mockupInstance,
   })
 
   function handleClickMockup() {
@@ -28,13 +28,17 @@ export default function SelectMockup() {
         <div className="flex items-center justify-between cursor-pointer">
           <div className="flex items-center">
             <img
-              src={paintingInstance.props?.layouts[0].imgUrl}
+              src={mockupInstance.props?.layouts[0].imgUrl}
               className="h-8 aspect-[4/3]"
             />
 
             <div className="ml-2">
-              <div className="text-base">{paintingInstance.label}</div>
-              <div className="text-xs">1170 * 2532</div>
+              <div className="text-base">{mockupInstance.label}</div>
+              <div className="text-xs">
+                {Object.keys(mockupInstance).length > 0
+                  ? mockupInstance.details?.screenPixels
+                  : '请选择'}
+              </div>
             </div>
           </div>
 
