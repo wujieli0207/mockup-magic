@@ -5,15 +5,36 @@ import type { IMockupComponent } from '#/mockup'
 import { isArray } from 'lodash-es'
 import { IPaintingState } from '@/redux/interface'
 import { MOCUKUP_TYPE_VL } from '@/constants/mockup-constant'
+import { IMockupInstance } from '#/painting'
+
+function copyProps(
+  mockupProps: IMockupComponent['props']
+): IMockupInstance['selectedProps'] {
+  const selectedProps: Record<string, unknown> = {}
+
+  Object.keys(mockupProps).forEach((key) => {
+    const value = mockupProps[key as keyof IMockupComponent['props']]
+    if (isArray(value)) {
+      selectedProps[key] = value[0]
+    } else {
+      selectedProps[key] = value
+    }
+  })
+
+  return selectedProps as IMockupInstance['selectedProps']
+}
 
 /**
  * @description 点击使用按钮，使用当前模型
  */
 export function handleGenerateMockupInstance(mockup: IMockupComponent) {
+  const selectedProps = copyProps(mockup.props)
+
   store.dispatch(
     setMockupInstance({
       _vid: nanoid(),
       imageUrl: [''],
+      selectedProps,
       ...mockup,
     })
   )

@@ -28,7 +28,8 @@ export interface IMockupProps {
   layouts: IMockupPropsLayout[] // string 模型与背景结合的样式配置
   shadow: number // 阴影数值
   scale: number // 缩放比例
-  position: [number, number] // 在画布上的位置，x 轴和 y 轴
+  positionX: number // 在画布上的位置，x 轴
+  positionY: number // 在画布上的位置，Y 轴
   isHidden: boolean // 是否隐藏，true 隐藏
 }
 

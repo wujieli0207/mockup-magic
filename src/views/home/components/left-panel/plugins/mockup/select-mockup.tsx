@@ -5,12 +5,11 @@ import { useSelector } from 'react-redux'
 import mockupList from '@/components/Mockup'
 import { getGroupMockup } from './utils'
 import { IReduxState } from '@/redux'
+import { IMockupComponent } from '#/mockup'
 
 export default function SelectMockup() {
   const painting = useSelector((state: IReduxState) => state.painting)
   const { mockupInstance } = painting
-
-  const [isOpenSelect, setIsOpenSelect] = useState(false)
 
   const mockupGroup = getGroupMockup({
     mockupList,
@@ -18,12 +17,18 @@ export default function SelectMockup() {
     mockupInstance,
   })
 
-  const activeTabKey = mockupGroup.find(
-    (item) => item.key === mockupInstance.type
-  )?.key
+  // const currentMockupKey = mockupGroup.find(
+  //   (item) => item.key === mockupInstance.type
+  // )?.key
+  const currentMockupKey = mockupInstance.type
+
+  const [isOpenSelect, setIsOpenSelect] = useState(false)
+
+  const [activeTabKey, setActiveTabKey] = useState(currentMockupKey)
 
   function handleClickMockup() {
     setIsOpenSelect(!isOpenSelect)
+    setActiveTabKey(currentMockupKey)
   }
 
   return (
@@ -60,7 +65,12 @@ export default function SelectMockup() {
         width={680}
         onCancel={handleClickMockup}
       >
-        <Tabs items={mockupGroup} activeKey={activeTabKey} size="small" />
+        <Tabs
+          items={mockupGroup}
+          activeKey={activeTabKey}
+          size="small"
+          onTabClick={(key) => setActiveTabKey(key as IMockupComponent['type'])}
+        />
       </Modal>
     </>
   )

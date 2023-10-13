@@ -40,7 +40,8 @@ const createProps = (): IMockupProps => {
     ],
     shadow: 0,
     scale: 0,
-    position: [0, 0],
+    positionX: 0,
+    positionY: 0,
     isHidden: false,
   }
 }
