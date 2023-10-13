@@ -17,9 +17,6 @@ export default function SelectMockup() {
     mockupInstance,
   })
 
-  // const currentMockupKey = mockupGroup.find(
-  //   (item) => item.key === mockupInstance.type
-  // )?.key
   const currentMockupKey = mockupInstance.type
 
   const [isOpenSelect, setIsOpenSelect] = useState(false)
