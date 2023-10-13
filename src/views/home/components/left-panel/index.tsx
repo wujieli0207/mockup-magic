@@ -1,6 +1,5 @@
 import { Card, Tabs } from 'antd'
 import pluginList from './plugins'
-import Header from '../header'
 import './index.less'
 
 const LeftPanel = () => {
@@ -17,9 +16,7 @@ const LeftPanel = () => {
 
   return (
     <div className="w-64 h-screen">
-      <Header />
-
-      <Card className="mt-2 ml-2 left-panel__container">
+      <Card className="mt-4 ml-2 panel__container">
         <Tabs items={pluginItems} size="small" />
       </Card>
     </div>

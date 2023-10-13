@@ -17,7 +17,7 @@ const Header = () => {
           {/* TODO icon 需要更新 */}
           <AppstoreFilled className="mr-2" />
 
-          <div className="text-lg font-medium w-36">Mockup Magic</div>
+          <div className="text-xl font-medium w-36">Mockup Magic</div>
         </div>
 
         <div className="flex">
