@@ -1,4 +1,5 @@
 import { IPluginComponent } from '#/plugin'
+import PropsEdit from './props-edit'
 import SelectMockup from './select-mockup'
 
 const plugin = () => {
@@ -7,6 +8,7 @@ const plugin = () => {
       <SelectMockup />
 
       {/* 模型通用数据操作 */}
+      <PropsEdit />
     </>
   )
 }

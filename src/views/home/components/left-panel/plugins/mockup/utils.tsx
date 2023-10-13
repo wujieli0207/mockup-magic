@@ -21,7 +21,7 @@ function copyProps(
     }
   })
 
-  return selectedProps as IMockupInstance['selectedProps']
+  return selectedProps as unknown as IMockupInstance['selectedProps']
 }
 
 /**
@@ -116,4 +116,19 @@ export function getGroupMockup(
   })
 
   return mockupGroup
+}
+
+export function handleSetSelectedProps(
+  mockupInstance: IMockupInstance,
+  props: unknown
+) {
+  store.dispatch(
+    setMockupInstance({
+      ...mockupInstance,
+      selectedProps: {
+        ...mockupInstance.selectedProps,
+        ...(props as IMockupInstance['selectedProps']),
+      },
+    })
+  )
 }
